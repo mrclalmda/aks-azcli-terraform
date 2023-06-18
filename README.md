@@ -58,7 +58,7 @@ az aks update --resource-group ResourceGroupName --name ClusterName --enable-dus
 ```
 **DONE!** Cluster created
 
-Deleting resources
+## Deleting resources
 
 First we shall delete the cluster
 ```
