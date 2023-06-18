@@ -83,12 +83,7 @@ az group delete --resource-group ResourceGroupName
   <summary>AKS cluster with Terraform</summary>
 
 
-  
-  ```js
-  function logSomething(something) {
-    console.log('Something', something);
-  }
-  ```
+ 
 </details>
 
 Thank you!
