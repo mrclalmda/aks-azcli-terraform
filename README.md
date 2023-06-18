@@ -84,4 +84,5 @@ az group delete --resource-group ResourceGroupName
   ```
 </details>
 
-Many thanks to @Kristijan Mitevski
+Thank you!
+@Kristijan Mitevski
