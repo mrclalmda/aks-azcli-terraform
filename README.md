@@ -86,6 +86,8 @@ az group delete --resource-group ResourceGroupName
 - Written with HCL, plan and translate it into code so Terraform can take on the rest
 - Make sure to have Terraform binary installed
 
+## How to
+
 - 1) Get subscription ID and take note of it
 ```
 az account list
