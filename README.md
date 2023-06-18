@@ -68,3 +68,4 @@ Then finally the group
 ```
 az group delete --resource-group ResourceGroupName
 ```
+**DONE!** All resources previously created were destroyed
