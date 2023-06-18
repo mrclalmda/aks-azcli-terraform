@@ -7,8 +7,6 @@ Automate creating two clusters (dev and prod) complete with an Ingress controlle
 <details>
   <summary>Create and update AKS cluster though AZ CLI</summary>
 
-Create and update AKS cluster though AZ CLI
-
 # Ways to provide a cluster
 3 ways
 - (1) Using AWS Web interface through *ClickOps* -> avoid because does not scale well and it is error prone
