@@ -83,7 +83,7 @@ az group delete --resource-group ResourceGroupName
 # AKS cluster with Terraform
 
 - Terraform is an opensource IaaC tool
-- Written with HCL, plan and translate it into code so Terraform can take on the rest
+- With HCL, plan and translate it into code so Terraform can take on the rest
 - Make sure to have Terraform binary installed
 
 ## How to
