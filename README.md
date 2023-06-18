@@ -3,7 +3,7 @@ Create and update AKS cluster though AZ CLI
 
 # Ways to provide a cluster
 3 ways
-- (1) Using AWS Web interface through *ClickOps* -> avoid because does not scale well and it error prone
+- (1) Using AWS Web interface through *ClickOps* -> avoid because does not scale well and it is error prone
 - (2) Use Azure CLI
 - (3) Define the cluster with code tool such as Terraform
 
