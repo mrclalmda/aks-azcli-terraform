@@ -154,5 +154,35 @@ terraform destroy
 ```
 </details>
 
-Thank you!
+
+# Prod-ready cluster
+<details>
+  <summary>Create production-ready cluster adding a second pool to it</summary>
+ 
+1) Reduce node count from 2 to 1, under default_node_pool in main.tf file
+
+2) Add following resouce creating to main.tf
+```
+resource "azurerm_kubernetes_cluster_node_pool" "mem" {
+ kubernetes_cluster_id = azurerm_kubernetes_cluster.cluster.id
+ name                  = "mem"
+ node_count            = "1"
+ vm_size               = "standard_d11_v2"
+}
+```
+3) Plan, check and apply
+```
+terraform plan
+```
+```
+terraform apply
+```
+
+4) Verify the new pool has been created
+```
+kubeclt get nodes --kubeconfig kubeconfig
+```
+
+ </details>  
+# Thank you!
 @Kristijan Mitevski
