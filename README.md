@@ -77,11 +77,7 @@ Then finally the group
 az group delete --resource-group ResourceGroupName
 ```
 **DONE!** All resources previously created were destroyed, check by using the ```list``` command for both group and cluster
-  ```js
-  function logSomething(something) {
-    console.log('Something', something);
-  }
-  ```
+  
 </details>
 <details>
   <summary>AKS cluster with Terraform</summary>
