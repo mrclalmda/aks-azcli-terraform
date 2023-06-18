@@ -80,8 +80,76 @@ az group delete --resource-group ResourceGroupName
 <details>
   <summary>AKS cluster with Terraform</summary>
 
+# AKS cluster with Terraform
 
- 
+- Terraform is an opensource IaaC tool
+- Written with HCL, plan and translate it into code so Terraform can take on the rest
+- Make sure to have Terraform binary installed
+
+- 1) Get subscription ID and take note of it
+```
+az account list
+```
+
+- 2) We need to create a Contributor Service Principal to provide Terraform so it can act on our behalf
+```
+az ad sp create for-rabc --role="Contributor" --scopes="/subscriotions/YOUR_SUB_ID"
+```
+Will return appId, password, tenant, displayName and name.
+
+- 3) Export environment variables so Terraform can access them
+```
+export ARM_CLIENT_ID = appId
+export ARM_SUBSCRIPTION_ID = subscription ID 
+export ARN_TENANT_ID = tenant
+export ARM_CLIENT_SECRET = password
+```
+
+- 4) Create the most basic .tf file called main.tf and write the following code. As we can see, we can co-relate with lesson number 1.
+
+Here, instead of running every single command through Az CLI, we will set it up and Terraform will automate its creation.
+
+```
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=2.48.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "learnk8sResourceGroup"
+  location = "northeurope"
+}
+```
+
+- 5) Run init so Terraform can prepare by translating the instructions into API calls and it will create a state file to keep track of what it has already done
+```
+terraform init
+```
+
+- 6) Plan and revise before creating. The following command allows us to do just that
+```
+terraform plan
+```
+
+- 7) Apply the plan
+```
+terraform apply
+```
+
+And DONE! We have successfully used Terraform to create a resource group
+
+- 8) Destroy everything created
+```
+terraform destroy
+```
 </details>
 
 Thank you!
