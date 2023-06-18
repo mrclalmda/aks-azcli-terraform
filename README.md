@@ -52,4 +52,19 @@ Create the cluster assigning it to a ResourceGroup. If you do not provide ssh cr
 az create -g ResourceGroupName -n ClusterName --generate-ssh-keys --node-count 2
 ```
 
-Update
+Update it passing the parameters you wish to update. You should always provider the cluster and its group name
+```
+az aks update --resource-group ResourceGroupName --name ClusterName --enable-duster-auscaler --min-count 1 --max-count 2
+```
+**DONE!** Cluster created
+
+Deleting resources
+
+First we shall delete the cluster
+```
+az aks delete -name ClusterName --resource-group Resource GroupName
+```
+Then finally the group
+```
+az group delete --resource-group ResourceGroupName
+```
