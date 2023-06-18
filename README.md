@@ -1,8 +1,9 @@
 # Getting started with Terraform and Kubernetes on Azure AKS
-We will learn how to create Kubernetes clusters on Azure Kubernetes Service (AKS) with the Azure CLI and Terraform. 
+We will learn how to create Kubernetes clusters on Azure Kubernetes Service (AKS) with the Azure CLI and Terraform.
+
 Automate creating two clusters (dev and prod) complete with an Ingress controller.
 
-## aks-cli
+## Lessons
 <details>
   <summary>Create and update AKS cluster though AZ CLI</summary>
 
@@ -82,3 +83,5 @@ az group delete --resource-group ResourceGroupName
   }
   ```
 </details>
+
+Many thanks to @Kristijan Mitevski
