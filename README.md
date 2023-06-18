@@ -155,7 +155,6 @@ terraform destroy
 </details>
 
 
-# Prod-ready cluster
 <details>
   <summary>Create production-ready cluster adding a second pool to it</summary>
  
