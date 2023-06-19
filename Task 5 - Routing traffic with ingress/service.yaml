@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: hello-kubernetes
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 8080
+  - port: 80
+    targetPort: 8080
   selector:
     name: hello-kubernetes

@@ -1,3 +1,7 @@
 *.exe
 *.tfstate
 *kubeconfig
+Task 4 - Deploy simple app with loadbalancer/terraform.tfstate.backup
+Task 5 - Routing traffic with ingress/.terraform.tfstate.lock.info
+
+Task 5 - Routing traffic with ingress/terraform.tfstate.backup

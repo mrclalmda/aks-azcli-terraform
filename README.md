@@ -252,6 +252,58 @@ kubectl apply -f service-loadbalancer.yaml
 However, the loadbalancer created only services one service at a time. Load balancers are expensive and theres a way to get around this.
   </details> 
 
+<details>
+  <summary>Routing traffic with ingress</summary>
+
+1) Azure add-on to use Ingress controller with Nginx. Append main.tf under cluster ressource config
+```
+ addon_profile {
+    http_application_routing {
+      enabled = true
+    }
+  }
+```
+
+2) Plan ```terraform plan```
+
+3) Apply ```terraform apply```
+
+4)Check created pods
+```
+kubectl get pods -n kube-system | grep addon
+```
+
+5) Create ingress.yaml file
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-kubernetes
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-kubernetes
+                port:
+                  number: 80
+```
+
+6) Deploy ingress file
+```
+kubectl apply -f ingress.yaml
+```
+DONE! Fully working cluster that can route live traffic!]
+
+To serve HTTPS traffic, you need to use HELM
+
+</details> 
+
 ## Thank you!
 
 @Kristijan Mitevski
