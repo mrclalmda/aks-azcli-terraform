@@ -183,6 +183,74 @@ kubeclt get nodes --kubeconfig kubeconfig
 ```
 
  </details>  
+<details>
+  <summary>Deploy simple app</summary>
+  
+1) Create YAML deployment file
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes
+spec:
+  selector:
+    matchLabels:
+      name: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        name: hello-kubernetes
+    spec:
+      containers:
+        - name: app
+          image: paulbouwer/hello-kubernetes:1.8
+          ports:
+            - containerPort: 8080
+```
+2) Submit definition to the cluster
+```
+kubectl apply -f deployment.yaml
+```
+*Export Kubeconfig file to ~/.kube/config so you dont have to passs ```--kubeconfig kubeconfig``` all the time
+
+3) Get the name of the pod 
+```
+kubectl get pods
+```  
+
+4) Connect to the pod
+```
+kubectl port-foward <NAME-OF-THE-POD> 8080:8080
+```
+The application is exposed, but that is not a great way to do it. Use service of type loadbalancer to expose them.
+
+5) Create service-loadbalancer.yaml file
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kubernetes
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    name: hello-kubernetes
+```
+
+6) Submit YAML
+```
+kubectl apply -f service-loadbalancer.yaml
+```
+
+7) DONE! Application is exposed through its public IP
+ ```
+ kubectl get svc
+ ```
+
+However, the loadbalancer created only services one service at a time. Load balancers are expensive and theres a way to get around this.
+  </details> 
 
 ## Thank you!
 
