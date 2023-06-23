@@ -1,0 +1,19 @@
+{
+    "Modules": [
+        {
+            "Key": "",
+            "Source": "",
+            "Dir": "."
+        },
+        {
+            "Key": "dev_cluster",
+            "Source": "./main",
+            "Dir": "main"
+        },
+        {
+            "Key": "prod_cluster",
+            "Source": "./main",
+            "Dir": "main"
+        }
+    ]
+}
