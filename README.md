@@ -304,6 +304,83 @@ To serve HTTPS traffic, you need to use HELM
 
 </details> 
 
+<details>
+  <summary>Fully automated Dev & Production environments with Terraform modules</summary>
+
+Creating separates environments when provisioning infra is one of the most common tasks.
+
+We shall use Terraform modules to encapsulate resources using variables and expressions.
+
+1) From task 5, move files ```main.tf```, ```variables.tf``` and ```outputs.tf``` to a new folder named main and create a ```main.tf``` where the old one used to be
+
+2) In the subfolder, append the ```env_name``` variable to the ResourceGroup
+```
+# output truncated for clarity
+resource "azurerm_resource_group" "rg" {
+  name     = "learnk8sResourceGroup-${var.env_name}"
+}
+```
+
+3) In the main folder, edit the ```main.tf``` file and set it to create 2 clusters. One for dev and another for prod.
+```
+module "dev_cluster" {
+    source       = "./main"
+    env_name     = "dev"
+    cluster_name = "learnk8scluster"
+}
+
+module "prod_cluster" {
+    source       = "./main"
+    env_name     = "prod"
+    cluster_name = "learnk8scluster"
+}
+```
+4) Set the default node pool count to 1, to avoid going beyond what Azures free tier allow us to
+```
+ default_node_pool {
+    name       = "default"
+    node_count = "1"
+    vm_size    = "standard_d2_v2"
+  }
+```
+
+5) Preview changes and apply
+```terraform plan```
+```terraform apply```
+
+6) If you wish to have different types of instances for each environment, create a new variable, edit the ```vm_size``` (default_node_pool) parameter to a dinamic one and add a new parameter to the main ```main.tf``` file.
+```
+variable "instance_type" {
+  default = "standard_d2_v2"
+}
+```
+```
+default_node_pool {
+  name       = "default"
+  node_count = "1"
+  vm_size    = var.instance_type
+}
+```
+```
+module "dev_cluster" {
+    source       = "./main"
+    env_name     = "dev"
+    cluster_name = "learnk8scluster"
+    instance_type= "standard_d2_v2"
+}
+
+module "prod_cluster" {
+    source       = "./main"
+    env_name     = "prod"
+    cluster_name = "learnk8scluster"
+    instance_type= "standard_d11_v2"
+}
+```
+
+Done!
+
+</details> 
+
 ## Thank you!
 
 @Kristijan Mitevski
